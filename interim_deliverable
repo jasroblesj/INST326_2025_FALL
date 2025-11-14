@@ -1,3 +1,49 @@
+def distribute(board, starting_pit, current_player):
+    """
+    name - Akbar Sajjad
+    Distribute the stones one by one into the pits, skipping over the opponents pit
+    
+    Arguments:
+        board: list (sample board) - [4, 4, 4, 4, 4, 4, 0, 4, 4, 4, 4, 4, 4, 0]
+            p1 pits - indices 0-5 | p1 storage - index 6
+            p2 pits - indices 7-12 | p1 storage - index 13    
+        starting pit: int - index of the chosen pit to distribute stones from 
+        current_player: str - the current player ("p1" or "p2")
+    
+    Returns:
+        board: list - updated board after stones have been distributed
+        last_pit: int - index of the pit where the last stone was placed
+    """
+    #determining the starting pit to start distribution
+    if board[starting_pit] > 0:
+        current_stonecount = board[starting_pit]
+        board[starting_pit] = 0
+    else:
+        print("You must pick a board that has at least 1 stone and is not"\
+            "yours or your opponents scoring pit")
+        return board
+    
+    # where to begin dropping stones
+    droppoint = (starting_pit + 1) % 14
+ 
+    # skipping pits logic based on current player
+    skippedpit = 13 if current_player == "p1" else 6
+        
+    
+    #distribution iteration
+    for stones in range(current_stonecount):
+        while droppoint == skippedpit:
+            droppoint = (droppoint + 1) % 14 
+        
+        #place stones
+        board[droppoint] += 1
+        last_pit = droppoint
+        droppoint = (droppoint + 1) % 14 
+    
+    #return updated board and the last pit the stone was placed
+    return board, last_pit
+
+
 def capture(board, last_pit, player):
     """Apply the capturing aspect of Mancala.
     
