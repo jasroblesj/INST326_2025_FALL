@@ -93,7 +93,8 @@ def capture(board, last_pit, player):
 
 
 def check_turn(last_index, player1, player2): 
-    """Determines if the current player gets another turn or if the turn switches.
+    """ Jasmin's function
+    Determines if the current player gets another turn or if the turn switches.
 
     Args:
         last_index (int): the index of the pit where the last marble landed
