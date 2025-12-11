@@ -1,5 +1,6 @@
 from argparse import ArgumentParser
 import sys
+import random as rd
 
 class Mancala:
     def __init__(self, p1, p2):
@@ -74,6 +75,77 @@ class Mancala:
     
     #return the last pit the stone was placed
         return last_pit
+    
+    #game loop 
+    def run_game(self):
+        """
+        Author: Akbar Sajjad
+        
+        Runs the Mancala game loop, brings all functions together
+        
+        Args: 
+            self - Mancala game instance
+            
+        """
+        
+        #starting player 
+        starting_player = rd.choice([self.p1, self.p2])
+        starting_player.set_turn(True)
+        
+        other_player = self.p2 if starting_player is self.p1 else self.p1
+        other_player.set_turn(False)
+        print(f"{starting_player.name} goes first")
+        
+        #game loop
+        while True:
+            starting_player = self.p1 if self.p1._my_turn else self.p2
+            other_player = self.p2 if starting_player is self.p1 else self.p1
+            
+            #the pits the player is allowed to pick from (the ones on their side)
+            allowedpits = range(0,6) if starting_player is self.p1 else range(7,13)
+            
+            #begin board display and choice
+            self.display_board()
+            print(f"\n{starting_player.name}, your turn\n")
+            print(f"Your allowed pits: {list(allowedpits)}")
+            
+            while True:
+                try:
+                    pit_choice = int(input("Choose your pit index: "))
+                except ValueError:
+                    print("Pick a valid choice please")
+                    continue
+                if pit_choice not in allowedpits:
+                    print("You cannot choose this pit, choose one of yours")
+                    continue
+                #empty pit
+                if self.board[pit_choice] == 0:
+                    print("This is an empty pit, pick one that has some stones")
+                    continue
+                break
+            
+            #distribution
+            determine_player = "p1" if starting_player is self.p1 else "p2"
+            
+            last_pit = self.distribute(pit_choice, determine_player)
+            
+            #capture
+            capture(self.board, last_pit, determine_player)
+            
+            #check turn
+            check_turn(last_pit, starting_player, other_player)
+            
+            #ending the game lgoic
+            if Check_game_end(self.board, range(0,6), range(7,13),6,13):
+                print(f"\nThe game is over! collecting the remaining stones...")
+                collect_remaining_pebbles(self.board, range(0,6), range(7,13)
+                                          ,6,13)
+                final_scores, winner = Calculate_final_score(self.board,6,13)
+                print("\nFinal Scores:")
+                print(final_scores)
+                print(f"The winner is: {winner}\n")
+                self.display_board
+                break
 
 
 def capture(board, last_pit, player):
@@ -100,7 +172,7 @@ def capture(board, last_pit, player):
     
     #need to find out position of last marble using player
     #1 is player 1 and 2 is player 2
-    if player == 1:
+    if player == "p1":
         #my_side is the side of the current player
         my_side = p1_side
         #store is the store of the current player
@@ -147,7 +219,7 @@ def check_moves(board, player):
     p2_side = range(7,13)
     
     #set my side to current player side
-    if player == 1:
+    if player == "p1":
         my_side = set(p1_side)
     else:
         my_side = set(p2_side)
