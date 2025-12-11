@@ -11,12 +11,15 @@ class Mancala:
 
     def display_board(self):
         """
-        Author - Akbar Sajjad 
+        Author - Akbar Sajjad
         
         Displays Mancala Board
         
         Args:
             Self
+        
+        Side Effects:
+            Prints board display
         """
         print("\n\tPlayer 2")
         
@@ -35,12 +38,12 @@ class Mancala:
     def distribute(self, starting_pit, current_player):
         """   
         Author - Akbar Sajjad
+        
+        Technique claimed: Conditional expressions
     
         Distribute the stones one by one into the pits, skipping over the opponents pit
     
-        Arguments:
-            p1 pits - indices 0-5 | p1storage - index 6
-            p2 pits - indices 7-12 | p1storage - index 13    
+        Args:   
             starting pit: int - index of the chosen pit to distribute stones from 
             current_player: str - the current player ("p1" or "p2")
     
@@ -80,6 +83,8 @@ class Mancala:
     def run_game(self):
         """
         Author: Akbar Sajjad
+        
+        Technique claimed: Composition of two custom classes
         
         Runs the Mancala game loop, brings all functions together
         
