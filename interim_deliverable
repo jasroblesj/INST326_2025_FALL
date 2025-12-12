@@ -85,16 +85,16 @@ class Mancala:
         """
         Author - Robsan Melaku
 
-        Technique claimed: magic methods other than __init__()
+        Technique claimed: Magic method __contains__()
         
         Apply the capturing aspect of Mancala.
     
         Args:
-            board: ints representing stones in pits
-            last_pit: index of last pit marble was placed
-            player: 1 or 2
+            last_pit (int): the index of last pit marble was placed
+            player (int): number 1 or 2 each representing a different player
     
-        Returns: updated board
+        Returns:
+            list[int]: updated board
         """
         #set pit and store status
         #p1 first pit is 0, p2 first pit is 7
@@ -285,17 +285,16 @@ class Mancala:
         """
         Author - Robsan Melaku
         
-        Technique claimed: set operations (union, intersection, difference, or
-        set difference) on sets or frozensets
+        Technique claimed: Set operations (intersection)
 
         Find which pits the given player can currently move from.
 
         Args:
-            board: list of ints representing stones in each pit
-            player: 1 or 2
+            player(str): "p1" or "p2" representing each player.
 
         Returns:
-            A set of pit indexes that contain stones that belong to the player.
+            set[int]: A set of pit indexes that contain stones that 
+            belong to the player.
         """
     
         #set pit and store status
