@@ -1,10 +1,6 @@
 # INST326_2025_FALL_THE_PIT
 
 ### Purpose of each file in our repository:
-- DS_Store
-- .gitignore
-- LICENSE
-- README.md
 - exercise_collaborative_programming
 - interim_deliverable
 
@@ -13,6 +9,7 @@
 ### Instructions on how to use your program and/or interpret the output of the program. Anything the user might encounter while using your program that a random person on the street would not find self-explanatory needs to be explained in your instructions
 
 ### Annotated Bibliography:
+We didn't use any outside resources.
 
 ### Attribution Table:
 
