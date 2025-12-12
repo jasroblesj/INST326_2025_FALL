@@ -394,7 +394,8 @@ class Player:
 
         
 def parse_args(arglist):
-    """ Parse command-line arguments.
+    """ Jasmin's function
+    Parse command-line arguments.
         
     Allow two optional arguments:
         -s, --stones: number of stones per pit (default:4)
